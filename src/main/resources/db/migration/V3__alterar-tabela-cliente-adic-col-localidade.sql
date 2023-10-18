@@ -1,0 +1,2 @@
+ALTER TABLE cliente
+   ADD COLUMN localidade VARCHAR(45) NULL DEFAULT NULL;
