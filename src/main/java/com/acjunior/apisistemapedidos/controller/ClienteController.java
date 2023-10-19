@@ -2,6 +2,7 @@ package com.acjunior.apisistemapedidos.controller;
 
 import com.acjunior.apisistemapedidos.domain.cliente.Cliente;
 import com.acjunior.apisistemapedidos.domain.cliente.ClienteRepository;
+import com.acjunior.apisistemapedidos.domain.cliente.DadosAtualizacaoCliente;
 import com.acjunior.apisistemapedidos.domain.cliente.DadosCadastroCliente;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,14 @@ public class ClienteController {
 
         var cliente = new Cliente(dados);
         repository.save(cliente);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoCliente dados) {
+
+        var cliente = repository.getReferenceById(dados.id());
+        //System.out.println(dados);
+        cliente.atualizarInformacoes(dados);
     }
 }

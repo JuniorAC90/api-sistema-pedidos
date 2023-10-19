@@ -29,6 +29,26 @@ public class Cliente {
         this.nome = dados.nome();
         this.sobrenome = dados.sobrenome();
         this.telefone = dados.telefone();
-        //this.endereco = new Endereco(dados.endereco());
+        this.endereco = new Endereco(dados.endereco());
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoCliente dados) {
+
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+
+        if (dados.sobrenome() != null) {
+            this.sobrenome = dados.sobrenome();
+        }
+
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+
+        if (dados.endereco() != null) {
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
+
     }
 }
