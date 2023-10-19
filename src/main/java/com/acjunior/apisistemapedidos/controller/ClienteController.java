@@ -20,7 +20,6 @@ public class ClienteController {
     @PostMapping
     @Transactional
     public void cadastrar(@RequestBody @Valid DadosCadastroCliente dados) {
-
         var cliente = new Cliente(dados);
         repository.save(cliente);
     }
@@ -32,5 +31,12 @@ public class ClienteController {
         var cliente = repository.getReferenceById(dados.id());
         //System.out.println(dados);
         cliente.atualizarInformacoes(dados);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id) {
+        var cliente = repository.getReferenceById(id);
+        repository.delete(cliente);
     }
 }
