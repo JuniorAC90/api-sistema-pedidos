@@ -1,14 +1,13 @@
 package com.acjunior.apisistemapedidos.controller;
 
-import com.acjunior.apisistemapedidos.domain.cliente.Cliente;
-import com.acjunior.apisistemapedidos.domain.cliente.ClienteRepository;
-import com.acjunior.apisistemapedidos.domain.cliente.DadosAtualizacaoCliente;
-import com.acjunior.apisistemapedidos.domain.cliente.DadosCadastroCliente;
+import com.acjunior.apisistemapedidos.domain.cliente.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("cliente")
@@ -38,5 +37,10 @@ public class ClienteController {
     public void excluir(@PathVariable Long id) {
         var cliente = repository.getReferenceById(id);
         repository.delete(cliente);
+    }
+
+    @GetMapping
+    public List<DadosListagemCliente> listar() {
+        return repository.findAll().stream().map(DadosListagemCliente::new).toList();
     }
 }
