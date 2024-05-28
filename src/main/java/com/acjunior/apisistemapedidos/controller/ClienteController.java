@@ -40,7 +40,8 @@ public class ClienteController {
     }
 
     @GetMapping
-    public List<DadosListagemCliente> listar() {
-        return repository.findAll().stream().map(DadosListagemCliente::new).toList();
+    public ResponseEntity<List<DadosListagemCliente>> listar() {
+        List<DadosListagemCliente> listaDeClientes = repository.findAll().stream().map(DadosListagemCliente::new).toList();
+        return ResponseEntity.ok().body(listaDeClientes);
     }
 }
